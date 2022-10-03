@@ -84,4 +84,30 @@ public void draw() {
   vertex(294, 600);
   vertex(282, 600);
   endShape(CLOSE);
+  
+  //wardrobe
+  fill(100, 70, 20);
+  beginShape();
+  vertex(780, 577);
+  vertex(794, 350);
+  vertex(896, 470);
+  vertex(875, 720);
+  endShape(CLOSE);
+  beginShape();
+  vertex(794, 350);
+  vertex(896, 470);
+  vertex(945, 445);
+  vertex(845, 340);
+  endShape(CLOSE);
+  fill(87, 62, 20);
+  beginShape();
+  vertex(945, 445);
+  vertex(896, 470);
+  vertex(875, 720);
+  vertex(920, 700);
+  endShape(CLOSE);
+}
+
+public void mouseClicked(){
+  println(mouseX, mouseY);
 }
