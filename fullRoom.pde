@@ -172,3 +172,7 @@ public void draw() {
   rect(450, 311, 3, 5);
   rect(456, 311, 3, 5);
 }
+
+public void mouseClicked() {
+  println(mouseX, mouseY);
+}
