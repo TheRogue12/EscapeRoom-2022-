@@ -152,7 +152,7 @@ public void draw() {
   beginShape();
   vertex(730, 393);
   vertex(735, 215);
-  vertex(791, 247);
+  vertex(791, 257);
   vertex(780, 470);
   endShape(CLOSE);
   
