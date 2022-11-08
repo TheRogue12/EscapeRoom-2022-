@@ -148,21 +148,21 @@ public void draw() {
   vertex(550, 196);
   vertex(440, 196);
   endShape(CLOSE);
-  
+
   beginShape();
   vertex(730, 393);
   vertex(735, 215);
   vertex(791, 257);
   vertex(780, 470);
   endShape(CLOSE);
-  
+
   //lock
   noFill();
   strokeWeight(3);
   bezier(444, 300, 444, 280, 465, 280, 465, 300);
   strokeWeight(2);
   fill(100, 100, 100);
-  circle(455, 285, 15);
+  ellipse(455, 285, 15, 15);
   rect(444, 300, 21, 19);
   fill(0);
   strokeWeight(1);
