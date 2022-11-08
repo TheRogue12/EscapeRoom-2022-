@@ -15,9 +15,17 @@ public void draw() {
   line(300, 350, 700, 350);
   line(300, 350, 300, 0);
   line(700, 350, 700, 0);
+  //floor
+  fill(93, 60, 20);
+  beginShape();
+  vertex(0, 800);
+  vertex(300, 350);
+  vertex(700, 350);
+  vertex(1000, 800);
+  endShape(CLOSE);
   //table
   //top
-  fill(100, 70, 20);
+  fill(108, 61, 2);
   beginShape();
   vertex(60, 640);
   vertex(180, 475);
@@ -63,9 +71,8 @@ public void draw() {
   vertex(305, 504); 
   vertex(298, 519);
   endShape(CLOSE);
-
-
-  fill(87, 62, 20);
+  //shading
+  fill(90, 51, 3);
   beginShape();
   vertex(101, 732);
   vertex(110, 715);
@@ -84,9 +91,9 @@ public void draw() {
   vertex(294, 600);
   vertex(282, 600);
   endShape(CLOSE);
-  
+
   //wardrobe
-  fill(100, 70, 20);
+  fill(108, 61, 2);
   beginShape();
   vertex(780, 577);
   vertex(794, 350);
@@ -99,7 +106,8 @@ public void draw() {
   vertex(945, 460);
   vertex(840, 345);
   endShape(CLOSE);
-  fill(87, 62, 20);
+  //sides
+  fill(90, 51, 3);
   beginShape();
   vertex(945, 460);
   vertex(896, 470);
@@ -131,8 +139,36 @@ public void draw() {
   vertex(873, 655);
   vertex(788, 555);
   endShape(CLOSE);
-}
 
-public void mouseClicked(){
-  println(mouseX, mouseY);
+  //door
+  fill(108, 61, 2);
+  beginShape();
+  vertex(439, 350);
+  vertex(550, 350);
+  vertex(550, 196);
+  vertex(440, 196);
+  endShape(CLOSE);
+  
+  beginShape();
+  vertex(730, 393);
+  vertex(735, 215);
+  vertex(791, 247);
+  vertex(780, 470);
+  endShape(CLOSE);
+  
+  //lock
+  noFill();
+  strokeWeight(3);
+  bezier(444, 300, 444, 280, 465, 280, 465, 300);
+  strokeWeight(2);
+  fill(100, 100, 100);
+  circle(455, 285, 15);
+  rect(444, 300, 21, 19);
+  fill(0);
+  strokeWeight(1);
+  rect(447, 303, 3, 5);
+  rect(453, 303, 3, 5);
+  rect(459, 303, 3, 5);
+  rect(450, 311, 3, 5);
+  rect(456, 311, 3, 5);
 }
