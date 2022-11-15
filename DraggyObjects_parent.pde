@@ -12,17 +12,17 @@ class DraggyObjects {
       return false;
   }//end onObject
 
-  void draggy() {
+    void draggy() {
     if (mousePressed) {
       if (onObject()) {
         if (pmouseX<mouseX)
-          myX+=2;
+          myX+=(mouseX-pmouseX);
         if (pmouseX>mouseX)
-          myX -= 2;
+          myX -= (pmouseX-mouseX);
         if (pmouseY<mouseY)
-          myY+=2;
+          myY+= (mouseY-pmouseY);
         if (pmouseY>mouseY)
-          myY-=2;
+          myY-= (pmouseY-mouseY);
       }//end if in bounds
     }//end if mousepressed
   }//end draggy
