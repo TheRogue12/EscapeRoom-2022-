@@ -171,4 +171,8 @@ public void draw() {
   rect(459, 303, 3, 5);
   rect(450, 311, 3, 5);
   rect(456, 311, 3, 5);
+  
+  fill(100, 100, 100);
+  strokeWeight(2);
+  ellipse(740, 330, 12, 15);
 }
