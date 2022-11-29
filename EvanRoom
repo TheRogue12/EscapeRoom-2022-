@@ -1,0 +1,267 @@
+
+
+interactObjects drawClickable = new interactObjects();
+staticObjects drawStatic = new staticObjects();
+DraggyObjects drawDrag = new DraggyObjects();
+Wrench drawWrench = new Wrench();
+Eyeball eye = new Eyeball(457, 681, 50, 40, 457, 681, 200);
+Eyeball eye2 = new Eyeball(203, 400, 50, 40, 203, 400, 200);
+int help = 55;
+int Boulderdiam = 300;
+boolean bloodMop = true;
+boolean lockWrench = true;
+boolean fireSwitch = true;
+int dB = 255;
+//boolean 
+void setup(){
+  background(#817070);
+  size(1000,800);
+  
+}
+
+void draw(){
+  background(#817070);
+  eye.show();
+  eye2.show();
+  drawStatic.show();
+  drawClickable.show();
+  drawDrag.show();
+  drawDrag.onObject();
+  drawDrag.draggy();
+  drawWrench.show();
+  drawWrench.onObject();
+  drawWrench.draggy();
+}
+
+class interactObjects{
+  void show(){
+    //boulder
+    float r = 100;
+    noFill();
+    if(fireSwitch == true){
+    while(Boulderdiam > 0){
+      strokeWeight(4);
+      stroke(r,r,r);
+      ellipse(200+(int)(Math.random()*11)-5,400+(int)(Math.random()*11),Boulderdiam,Boulderdiam);
+      Boulderdiam-=0.1;
+      r-=0.2;
+    } 
+    Boulderdiam = 300;
+    r = 100;
+    }
+    strokeWeight(2);
+  //Blood Stains
+  if(bloodMop == false){
+    dB = 150;
+  }
+  noStroke();
+  fill(#DE5151,dB);
+  ellipse(424,664,170,150);
+  ellipse(507,719,160,100);
+  ellipse(588,595,100,40);
+  ellipse(608,673,70,90);
+  ellipse(503,636,60,30);
+  
+  //Fireplace
+  fill(0,0,0);
+  arc(440,396,150,300,PI,TWO_PI);
+  if(fireSwitch == true){
+  fill(#E8762A);
+  beginShape();
+  vertex(395,398);
+  vertex(395+(int)(Math.random()*7)-4,306+(int)(Math.random()*7)-4);
+  vertex(424+(int)(Math.random()*7)-4, 320+(int)(Math.random()*7)-4);
+  vertex(438+(int)(Math.random()*7)-4, 305+(int)(Math.random()*7)-4);
+  vertex(456+(int)(Math.random()*7)-4, 317+(int)(Math.random()*7)-4);
+  vertex(481+(int)(Math.random()*7)-4, 308+(int)(Math.random()*7)-4);
+  vertex(482, 398);
+  endShape();
+  fill(#FAFF05);
+  beginShape();
+  vertex(413, 398);
+  vertex(412+(int)(Math.random()*7)-4, 344+(int)(Math.random()*7)-4);
+  vertex(426+(int)(Math.random()*7)-4, 351+(int)(Math.random()*7)-4);
+  vertex(436+(int)(Math.random()*7)-4, 337+(int)(Math.random()*7)-4);
+  vertex(446+(int)(Math.random()*7)-4, 351+(int)(Math.random()*7)-4);
+  vertex(464+(int)(Math.random()*7)-4, 338+(int)(Math.random()*7)-4);
+  vertex(465, 398);
+  endShape();
+  
+  }
+ }
+ 
+}
+
+class staticObjects{
+  void show(){
+    //background
+    stroke(0,0,0);
+    strokeWeight(10);
+    line(0,800,200,400);
+    line(200,400,800,400);
+    line(800,400,1000,800);
+    line(800,400,1000-65,0);
+    line(200,400,65,0);
+    
+    
+    
+    //Bed
+    fill(#F0B64B);
+    strokeWeight(1);
+    quad(489+help,327,517+help,454,781+help,414,770+help,305);
+    
+    quad(489+help,327,484+help,344,515+help,468,517+help,454);
+    quad(517+help,454,515+help,468,832,427,781+help,414);
+    quad(770+help,305,800+help,255,831+help,351,781+help,414);
+    line(489+help,327,468+help,410);
+    line(517+help,454,512+help,506);
+    line(781+help,414,818,478);
+    
+    //Bookshelf
+    
+    //rect();
+    
+  }
+}
+
+void mousePressed(){
+ System.out.print(mouseX);
+  System.out.println(", " + mouseY); 
+}
+
+class DraggyObjects {
+  int myX, myY, myWidth, myHeight;
+  DraggyObjects() {
+    myX = 0;
+    myY = 0;
+  }
+ void show(){
+   if(bloodMop == true){
+   //Mop
+  fill(#986848);
+  stroke(0,0,0);
+  quad(942+myX,346+myY,858+myX,454+myY,867+myX,467+myY,952+myX,354+myY);
+  quad(850+myX,445+myY,877+myX,477+myY,877+myX,494+myY,837+myX,449+myY);
+  for(int i = 0; i<40; i+=4){
+    quad(837+i+myX,449+i+myY,841+i+myX,453+i+myY,824+i+myX,479+i+myY,820+i+myX,472+i+myY);
+  }
+   }
+  
+ }
+  boolean onObject() {//checks if mouse is on the object
+    if ((mouseX<myX+960)&&(mouseX>myX+820)&&(mouseY<myY+500)&&(mouseY>myY+344)){
+      return true;
+    }else{
+      return false;
+  }
+  
+  
+  
+  }//end onObject
+
+  void draggy() {
+    if (mousePressed) {
+      if (onObject()) {
+        if (pmouseX<mouseX)
+          myX+=(mouseX-pmouseX);
+        if (pmouseX>mouseX)
+          myX -= (pmouseX-mouseX);
+        if (pmouseY<mouseY)
+          myY+= (mouseY-pmouseY);
+        if (pmouseY>mouseY)
+          myY-= (pmouseY-mouseY);
+        if(pmouseY > 626 && pmouseY < 650 && pmouseX > 493 && pmouseX < 520){
+         bloodMop = false; 
+        }
+      }//end if in bounds
+    }//end if mousepressed
+  }//end draggy
+}//end DraggyObject class
+
+class Wrench extends DraggyObjects{
+  Wrench() {
+    myX = 0;
+    myY = 0;
+  }
+  void show(){
+  //Wrench
+  fill(#58514D);
+  noStroke();
+  rect(447+myX,440+myY,80,10);
+  arc(447+myX,440+myY, 30, 30, PI+QUARTER_PI, TWO_PI);
+  arc(447+myX, 450+myY, 30, 30, 0, PI-QUARTER_PI, PIE);
+  }
+  
+  boolean onObject() {//checks if mouse is on the object
+    if ((mouseX<myX+538)&&(mouseX>myX+416)&&(mouseY<myY+484)&&(mouseY>myY+400))
+      return true;
+    else
+      return false;
+  }//end onObject
+  
+  void draggy() {
+    if (mousePressed) {
+      if (onObject()) {
+        if (pmouseX<mouseX)
+          myX+=(mouseX-pmouseX);
+        if (pmouseX>mouseX)
+          myX -= (pmouseX-mouseX);
+        if (pmouseY<mouseY)
+          myY+= (mouseY-pmouseY);
+        if (pmouseY>mouseY)
+          myY-= (pmouseY-mouseY);
+      
+      }//end if in bounds
+    }//end if mousepressed
+  }//end draggy
+}//end DraggyObject class
+  
+  
+  
+class Eyeball extends DraggyObjects{
+  int myColor,finalX,finalY;
+  Eyeball(int x, int y, int w, int h, int fx, int fy, color c) {
+    //initialize myColor here
+    myX = x;
+    myY = y;
+    myWidth = w;
+    myHeight = h;
+    finalX= fx;
+    finalY = fy;
+    myColor = c;
+  }//end constructor
+  void show() {
+    //background eyeball color
+    fill(250, 240, 230);
+    ellipse(myX, myY, myWidth, myHeight);
+    //iris
+    fill(myColor);
+    ellipse(myX, myY, 25, myHeight);
+    //pupil
+    fill(0);
+    ellipse(myX, myY, 5, myHeight-30);
+    //final ellipse stuff
+    noFill();
+    stroke(myColor);
+    strokeWeight(3);
+    ellipse(finalX, finalY, myWidth, myHeight);
+    //reset default values for below
+    stroke(0);
+    strokeWeight(1);
+  }//end show
+    boolean isFound() {
+    if ((finalX-5<myX)&&(myX<finalX+5)&&(finalY-5<myY)&&(myY<finalY+5)) {
+      myX=finalX;
+      myY=finalY;
+      return true;
+    }
+    return false;
+  }//end isFound
+   boolean onObject() {//repeated from parent bc need to check isFound
+    if ((mouseX<myX+myWidth/2)&&(mouseX>myX-myWidth/2)&&(mouseY<myY+myHeight/2)&&(mouseY>myY-myHeight/2)&&(isFound()==false))
+      return true;
+    else
+      return false;
+  }//end onObject
+  
+}
